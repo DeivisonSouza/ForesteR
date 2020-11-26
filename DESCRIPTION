@@ -1,13 +1,13 @@
 Package: forester
-Title: What the Package Does (One Line, Title Case)
+Title: Traditional Methods for Analyzing Forest Data
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Deivison",
+           family = "Souza",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "deivisonvs@ufpa.br",
+           comment = c(ORCID = "0000-0002-2975-0927"))
+Description: The "forester" package constitutes a set of functions with mathematical and statistical methods traditionally used by forestry engineers to analyze forest inventory data.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
