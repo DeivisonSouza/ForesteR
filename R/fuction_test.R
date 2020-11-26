@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param x
+#'
+#' @return
+#' @export
+#'
+#' @examples
 desc <-
   function(x){
     n <- length(x)
