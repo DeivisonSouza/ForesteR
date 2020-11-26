@@ -1,28 +1,28 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# foresteR
+# forester
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of foresteR is to …
+The goal of `forester` is to …
 
 ## Installation
 
-You can install the released version of foresteR from
+You can install the released version of `forester` from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("foresteR")
+install.packages("forester")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("DeivisonSouza/foresteR")
+devtools::install_github("DeivisonSouza/forester")
 ```
 
 ## Example
@@ -30,6 +30,6 @@ devtools::install_github("DeivisonSouza/foresteR")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(foresteR)
+#library(forester)
 ## basic example code
 ```
