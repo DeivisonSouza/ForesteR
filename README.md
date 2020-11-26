@@ -30,6 +30,6 @@ devtools::install_github("DeivisonSouza/forester")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-#library(forester)
+library(forester)
 ## basic example code
 ```
