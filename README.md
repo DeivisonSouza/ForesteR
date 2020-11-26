@@ -7,7 +7,9 @@
 
 <!-- badges: end -->
 
-`forester` is an R package for Forest Sciences…
+The `forester` package constitutes a set of functions with mathematical
+and statistical methods traditionally used by forestry engineers to
+analyze forest inventory data.
 
 ## Installation
 
