@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-The goal of `forester` is to …
+`forester` is an R package for Forest Sciences…
 
 ## Installation
 
