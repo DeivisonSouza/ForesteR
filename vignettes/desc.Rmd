@@ -16,6 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(forester)
-data("pinus")
-desc(data$Volume)
+#data("pinus")
+#desc(data$Volume)
 ```
