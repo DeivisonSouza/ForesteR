@@ -2,16 +2,19 @@
 % Please edit documentation in R/fuction_test.R
 \name{desc}
 \alias{desc}
-\title{Title}
+\title{Descriptive statistics}
 \usage{
 desc(x)
 }
 \arguments{
-\item{x}{}
+\item{x}{Um vetor numérico.}
 }
 \value{
-
+Uma lista com estatísticas descritivas.
 }
 \description{
-Title
+Esta função realiza a estatística descritiva para um vetor numérico.
+}
+\details{
+Um detalhe importante.
 }

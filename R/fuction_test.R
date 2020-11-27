@@ -1,8 +1,13 @@
-#' Title
+#' Descriptive statistics
 #'
-#' @param x
+#' Esta função realiza a estatística descritiva para um vetor numérico.
 #'
-#' @return
+#' Um detalhe importante.
+#'
+#' @param x Um vetor numérico.
+#'
+#' @return Uma lista com estatísticas descritivas.
+#'
 #' @export
 #'
 #' @examples
