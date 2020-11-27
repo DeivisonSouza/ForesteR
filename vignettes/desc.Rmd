@@ -16,6 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(forester)
-x <- seq(1:10)
-desc(x)
+data("pinus")
+desc(data$Volume)
 ```
