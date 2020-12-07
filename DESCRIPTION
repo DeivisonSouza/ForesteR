@@ -20,6 +20,13 @@ Suggests:
     rmarkdown
 VignetteBuilder: knitr
 Imports: 
-    stats
+    stats,
+    dplyr,
+    tibble,
+    scales,
+    stringr,
+    magrittr,
+    rlang,
+    DT
 Depends: 
     R (>= 2.10)
