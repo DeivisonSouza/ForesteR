@@ -21,7 +21,7 @@ SRS(x, by = NULL, A, a, DT = TRUE)
 Uma tibble com as estimativas de amostragem aleatória simples.
 }
 \description{
-Esta função aplica os estimadores da amostragem aleatória simples.
+Calcula as estimativas de amostragem aleatória simples para dados de inventário florestal.
 }
 \details{
 Um detalhe importante.

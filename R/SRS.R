@@ -1,6 +1,6 @@
 #' Simple random sampling
 #'
-#' Esta função aplica os estimadores da amostragem aleatória simples.
+#' Calcula as estimativas de amostragem aleatória simples para dados de inventário florestal.
 #'
 #' Um detalhe importante.
 #'
@@ -27,9 +27,9 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
 
     FP <- 10000/a
     x <- x*FP
-    Soma <- sum(x)
-    Media <- mean(x, na.rm = TRUE)
-    Variancia <- stats::var(x)
+    Sum <- sum(x)
+    Mean <- mean(x, na.rm = TRUE)
+    Var <- stats::var(x)
     N <- ceiling(A/a)
     f <- length(x)/N
     FC <- 1-f
@@ -44,10 +44,10 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
       VarM <- stats::var(x)/length(x)
       SdM <- sqrt(VarM)
       Ea <- t*SdM
-      Er <- (Ea/Media)*100
-      ICI <- Media - Ea
-      ICS <- Media + Ea
-      TotPop <- N*Media
+      Er <- (Ea/mean(x, na.rm = TRUE))*100
+      ICI <- mean(x, na.rm = TRUE) - Ea
+      ICS <- mean(x, na.rm = TRUE) + Ea
+      TotPop <- N*mean(x, na.rm = TRUE)
       ICIP <- ICI*A
       ICSP <- ICS*A
 
@@ -65,10 +65,10 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
       VarM <- stats::var(x)/length(x)*FC
       SdM <- (stats::sd(x)/sqrt(length(x)))*sqrt(FC)
       Ea <- t*SdM
-      Er <- (Ea/Media)*100
-      ICI <- Media - Ea
-      ICS <- Media + Ea
-      TotPop <- N*Media
+      Er <- (Ea/mean(x, na.rm = TRUE))*100
+      ICI <- mean(x, na.rm = TRUE) - Ea
+      ICS <- mean(x, na.rm = TRUE) + Ea
+      TotPop <- N*mean(x, na.rm = TRUE)
       ICIP <- ICI*A
       ICSP <- ICS*A
 
@@ -81,20 +81,26 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
     }
     #cat("\n-------------------------------------------------------------\n")
 
-    out <- list(Soma, Media, N, f, E, t, n,
+    out <- list(Sum, Mean, N, f, E, t, n,
                 VarM, SdM, Ea, Er, ICI, ICS,
                 TotPop, ICIP, ICSP)
 
-    names(out) <- c("Soma", "Media", "Numero de amostras possiveis",
-                    "Fracao de amostragem", "Erro maximo admissivel",
-                    "t-student", "Intensidade amostral",
-                    "Variancia da media", "Erro padrao da Media",
-                    "Erro de amostragem absoluto",
-                    "Erro de amostragem relativo",
-                    "IC inferior para media",
-                    "IC superior para media","Total da populacao",
-                    "IC inferior para total da populacao",
-                    "IC superior para total da populacao")
+    names(out) <- c("Sum",
+                    "Sample mean",
+                    "Number of possible samples",
+                    "Sampling fraction",
+                    "Erro maximo admissivel",
+                    "t-student",
+                    "Sample intensity",
+                    "Variancia da media",
+                    "Mean standard error",
+                    "Absolute sampling error",
+                    "Relative sampling error",
+                    "Lower confidence interval (Mean)",
+                    "Upper confidence interval (Mean)",
+                    "Total population",
+                    "Lower confidence interval (Population)",
+                    "Upper confidence interval (Population)")
     out
   }
 
