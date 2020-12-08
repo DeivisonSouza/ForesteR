@@ -1,4 +1,4 @@
-#' # Simple random sampling
+#' Simple random sampling
 #'
 #' Esta função aplica os estimadores da amostragem aleatória simples.
 #'
@@ -15,8 +15,7 @@
 #' @export
 #'
 #' @importFrom rlang .data
-
-#@examples: SRS(x = pinus$Volume, A = 400000, a = 600) (dá erro!)
+#'
 
 SRS <- function(x, by=NULL, A, a, DT=TRUE){
 
@@ -102,28 +101,58 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
 
   if(is.null(by)){
     out <- fx(x = x, A = A, a = a)
-    out <- out %>% do.call(rbind, .data) %>%
+    out <- out %>% do.call(rbind, .) %>%
       tibble::as_tibble(.name_repair="unique", rownames=NA)
     out <- out %>%
       tibble::rownames_to_column(var = "Parameters") %>%
       dplyr::rename("Estimates" = names(out)) %>%
       dplyr::mutate_if(is.numeric, scales::comma, accuracy = .01)
-    out
+
+    if(DT==TRUE){
+      DT::datatable(out,
+                    editable = TRUE,
+                    rownames = F,
+                    extensions=c("Buttons",'ColReorder'),
+                    options = list(
+                      colReorder = TRUE,
+                      pageLength = 20,
+                      dom = 'Bfrtip',
+                      buttons = c('copy', 'excel', 'pdf', I('colvis')),
+                      scroller = TRUE,
+                      searchHighlight = TRUE)
+      )
+    }else{
+      out
+    }
+
   }else{
     if (length(x) != length(by))
       stop("Lengths of vectors `x` and `y` must agree.")
     outBy <- tapply(x, by, FUN=fx, A = A, a = a, simplify = F)
     out <- outBy %>%
-      dplyr::bind_rows(.data, .id = NULL) %>%
-      t(.data) %>%
-      tibble::as_tibble(.data, rownames = "Parameters") %>%
-      dplyr::rename_if(stringr::str_detect(names(.data), "^V"), ~paste(names(outBy),"Estimates", sep="\n")) %>%
+      dplyr::bind_rows(., .id = NULL) %>%
+      t(.) %>%
+      tibble::as_tibble(., rownames = "Parameters") %>%
+      dplyr::rename_if(stringr::str_detect(names(.), "^V"), ~paste(names(outBy),"Estimates", sep="\n")) %>%
       dplyr::mutate_if(is.numeric, scales::comma, accuracy = .01)
 
     if(DT==TRUE){
-      DT::datatable(out)
+      DT::datatable(out,
+                    editable = TRUE,
+                    rownames = F,
+                    extensions=c("Buttons",'ColReorder'),
+                    options = list(
+                      colReorder = TRUE,
+                      pageLength = 20,
+                      dom = 'Bfrtip',
+                      buttons = c('copy', 'excel', 'pdf', I('colvis')),
+                      scroller = TRUE,
+                      searchHighlight = TRUE)
+      )
     }else{
       out
     }
   }
 }
+
+
