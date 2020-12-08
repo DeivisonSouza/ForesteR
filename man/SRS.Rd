@@ -2,7 +2,7 @@
 % Please edit documentation in R/SRS.R
 \name{SRS}
 \alias{SRS}
-\title{Simple random sampling}
+\title{Simple Random Sampling}
 \usage{
 SRS(x, by = NULL, A, a, DT = TRUE)
 }
@@ -25,4 +25,11 @@ Calcula as estimativas de amostragem aleatória simples para dados de inventári
 }
 \details{
 Um detalhe importante.
+}
+\examples{
+\dontrun{
+data(pinus)
+SRS(x = pinus$Volume, A = 400000, a = 600, DT=F)
+}
+
 }

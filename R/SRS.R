@@ -1,4 +1,4 @@
-#' Simple random sampling
+#' Simple Random Sampling
 #'
 #' Calcula as estimativas de amostragem aleatória simples para dados de inventário florestal.
 #'
@@ -13,6 +13,12 @@
 #' @return Uma tibble com as estimativas de amostragem aleatória simples.
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' data(pinus)
+#' SRS(x = pinus$Volume, A = 400000, a = 600, DT=F)
+#'}
 #'
 #' @importFrom rlang .data
 
