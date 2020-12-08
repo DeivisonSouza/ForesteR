@@ -1,8 +1,8 @@
 ---
-title: "Descriptive statistics"
+title: "Simple Random Sampling"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Descriptive statistics}
+  %\VignetteIndexEntry{Simple Random Sampling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,6 +16,6 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(forester)
-#data("pinus")
-#desc(data$Volume)
+data("pinus")
+SRS(x = pinus$Volume, A = 400000, a = 600, DT=T)
 ```
