@@ -10,7 +10,7 @@
 #'
 #' @export
 #'
-#' @examples
+
 desc <-
   function(x){
     n <- length(x)
