@@ -15,7 +15,6 @@
 #' @export
 #'
 #' @importFrom rlang .data
-#'
 
 SRS <- function(x, by=NULL, A, a, DT=TRUE){
 
@@ -101,7 +100,7 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
 
   if(is.null(by)){
     out <- fx(x = x, A = A, a = a)
-    out <- out %>% do.call(rbind, .) %>%
+    out <- do.call(rbind, out) %>%
       tibble::as_tibble(.name_repair="unique", rownames=NA)
     out <- out %>%
       tibble::rownames_to_column(var = "Parameters") %>%
@@ -129,11 +128,10 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
     if (length(x) != length(by))
       stop("Lengths of vectors `x` and `y` must agree.")
     outBy <- tapply(x, by, FUN=fx, A = A, a = a, simplify = F)
-    out <- outBy %>%
-      dplyr::bind_rows(., .id = NULL) %>%
-      t(.) %>%
-      tibble::as_tibble(., rownames = "Parameters") %>%
-      dplyr::rename_if(stringr::str_detect(names(.), "^V"), ~paste(names(outBy),"Estimates", sep="\n")) %>%
+    out <- dplyr::bind_rows(outBy, .id = NULL) %>%
+      t() %>%
+      tibble::as_tibble(rownames = "Parameters") %>%
+      dplyr::rename_if(is.numeric, ~paste(names(outBy),"Estimates", sep="\n")) %>%
       dplyr::mutate_if(is.numeric, scales::comma, accuracy = .01)
 
     if(DT==TRUE){
