@@ -1,5 +1,5 @@
 ---
-title: "Simple Random Sampling"
+title: "Simple Random Sampling - SRS"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Simple Random Sampling}
