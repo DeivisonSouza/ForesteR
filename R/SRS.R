@@ -159,7 +159,7 @@ SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
   }else{
     if (length(x) != length(by))
       stop("Lengths of vectors `x` and `y` must agree.")
-    outBy <- tapply(x, by, FUN=fx, A = A, a = a, simplify = F)
+    outBy <- tapply(x, by, FUN=fx, A = A, a = a, FP = FP, simplify = F)
     out <- dplyr::bind_rows(outBy, .id = NULL) %>%
       t() %>%
       tibble::as_tibble(rownames = "Parameters") %>%
