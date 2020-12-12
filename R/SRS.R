@@ -9,6 +9,7 @@
 #' @param A Área total da população, em metros quadrados.
 #' @param a Área da amostra, em metros quadrados.
 #' @param DT Lógico. imprime a saída no painel de visualização. (default=TRUE)
+#' @param FP Lógico. Fator de proporcionalidade para transformar para hectare. (default=TRUE)
 #'
 #' @return Uma tibble com as estimativas de amostragem aleatória simples.
 #'
@@ -22,17 +23,22 @@
 #'
 #' @importFrom rlang .data
 
-SRS <- function(x, by=NULL, A, a, DT=TRUE){
+SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
 
   if(!is.numeric(x) | is.integer(x) | is.character(x))
     stop("x must be a numeric vector")
 
   if (is.character(by)) by <- as.factor(by)
 
-  fx <- function(x, by=NULL, A, a){
+  if(FP==TRUE){
+    fp <- 1/a
+    x <- x*fp
+  }else{
+    x
+  }
 
-    FP <- 10000/a
-    x <- x*FP
+  fx <- function(x, by=NULL, A, a, FP){
+
     Sum <- sum(x)
     Mean <- mean(x, na.rm = TRUE)
     Var <- stats::var(x)
@@ -53,9 +59,16 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
       Er <- (Ea/mean(x, na.rm = TRUE))*100
       ICI <- mean(x, na.rm = TRUE) - Ea
       ICS <- mean(x, na.rm = TRUE) + Ea
-      TotPop <- N*mean(x, na.rm = TRUE)
-      ICIP <- ICI*A
-      ICSP <- ICS*A
+
+      if(FP == TRUE){
+        TotPop <- A*mean(x, na.rm = TRUE)
+        ICIP <- TotPop-A*(Ea)
+        ICSP <- TotPop+A*(Ea)
+      }else{
+        TotPop <- N*mean(x, na.rm = TRUE)
+        ICIP <- TotPop-N*(Ea)
+        ICSP <- TotPop+N*(Ea)
+      }
 
       if(n <= length(x)){
         #cat("Esforço amostral satisfatório. O IF é definitivo!")
@@ -74,9 +87,16 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
       Er <- (Ea/mean(x, na.rm = TRUE))*100
       ICI <- mean(x, na.rm = TRUE) - Ea
       ICS <- mean(x, na.rm = TRUE) + Ea
-      TotPop <- N*mean(x, na.rm = TRUE)
-      ICIP <- ICI*A
-      ICSP <- ICS*A
+
+      if(FP == TRUE){
+        TotPop <- A*mean(x, na.rm = TRUE)
+        ICIP <- TotPop-A*(Ea)
+        ICSP <- TotPop+A*(Ea)
+      }else{
+        TotPop <- N*mean(x, na.rm = TRUE)
+        ICIP <- TotPop-N*(Ea)
+        ICSP <- TotPop+N*(Ea)
+      }
 
       if(n <= length(x)){
         #cat("Esforço amostral satisfatório. O IF é definitivo!")
@@ -111,7 +131,7 @@ SRS <- function(x, by=NULL, A, a, DT=TRUE){
   }
 
   if(is.null(by)){
-    out <- fx(x = x, A = A, a = a)
+    out <- fx(x = x, A = A, a = a, FP = FP)
     out <- do.call(rbind, out) %>%
       tibble::as_tibble(.name_repair="unique", rownames=NA)
     out <- out %>%
