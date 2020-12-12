@@ -41,5 +41,5 @@ This is a basic example which shows you how to solve a common problem:
 ```{r example}
 library(forester)
 data("pinus")
-SRS(x = pinus$Volume, A = 400000, a = 600, DT = F)
+SRS(x = pinus$Volume, A = 400000, a = 600, FP = F, DT = F)
 ```
