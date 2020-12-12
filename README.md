@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# Hello, welcome\! :smiley: :grin:
+
 # forester package
 
 <!-- badges: start -->
@@ -38,22 +40,22 @@ SRS(x = pinus$Volume, A = 400000, a = 600, FP = F, DT = F)
 #> New names:
 #> * `` -> ...1
 #> # A tibble: 16 x 2
-#>    Parameters                             Estimates
-#>    <chr>                                  <chr>    
-#>  1 Sum                                    381.22   
-#>  2 Sample mean                            23.83    
-#>  3 Number of potential sample units       667.00   
-#>  4 Sample fraction                        0.02     
-#>  5 Maximum acceptable error               2.38     
-#>  6 t-student value                        2.13     
-#>  7 Sample sufficiency                     14.00    
-#>  8 Variance of mean                       1.09     
-#>  9 Standard error of mean                 1.04     
-#> 10 Absolute sampling error                2.22     
-#> 11 Relative sampling error                9.33     
-#> 12 Lower confidence interval the mean     21.60    
-#> 13 Upper confidence interval the mean     26.05    
-#> 14 Total population                       15,892.11
-#> 15 Lower confidence interval (Population) 14,409.79
-#> 16 Upper confidence interval (Population) 17,374.42
+#>    Parameters                             Estimates 
+#>    <chr>                                  <chr>     
+#>  1 Sum                                    381.220   
+#>  2 Sample mean                            23.826    
+#>  3 Number of potential sample units       667.000   
+#>  4 Sample fraction                        0.024     
+#>  5 Maximum acceptable error               2.383     
+#>  6 t-student value                        2.131     
+#>  7 Sample sufficiency                     14.000    
+#>  8 Variance of mean                       1.087     
+#>  9 Standard error of mean                 1.043     
+#> 10 Absolute sampling error                2.222     
+#> 11 Relative sampling error                9.327     
+#> 12 Lower confidence interval the mean     21.604    
+#> 13 Upper confidence interval the mean     26.049    
+#> 14 Total population                       15,884.167
+#> 15 Lower confidence interval (Population) 14,402.601
+#> 16 Upper confidence interval (Population) 17,365.732
 ```
