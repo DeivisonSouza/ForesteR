@@ -4,7 +4,7 @@
 \alias{SRS}
 \title{Simple Random Sampling}
 \usage{
-SRS(x, by = NULL, A, a, DT = TRUE)
+SRS(x, by = NULL, A, a, FP = TRUE, DT = TRUE)
 }
 \arguments{
 \item{x}{Um vetor numérico com a variável de interesse.}
@@ -14,6 +14,8 @@ SRS(x, by = NULL, A, a, DT = TRUE)
 \item{A}{Área total da população, em metros quadrados.}
 
 \item{a}{Área da amostra, em metros quadrados.}
+
+\item{FP}{Lógico. Fator de proporcionalidade para transformar para hectare. (default=TRUE)}
 
 \item{DT}{Lógico. imprime a saída no painel de visualização. (default=TRUE)}
 }
