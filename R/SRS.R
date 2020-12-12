@@ -30,7 +30,7 @@ SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
 
   if (is.character(by)) by <- as.factor(by)
 
-  if(FP==TRUE){
+  if(FP == TRUE){
     fp <- 1/a
     x <- x*fp
   }else{
@@ -42,13 +42,13 @@ SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
     Sum <- sum(x)
     Mean <- mean(x, na.rm = TRUE)
     Var <- stats::var(x)
-    N <- ceiling(A/a)
+    N <- A/a
     f <- length(x)/N
-    FC <- 1-f
-    E = 0.1*mean(x)
-    t = stats::qt(1-.05/2, df=length(x)-1)
+    fc <- 1-f
+    E <- 0.1*mean(x)
+    t <- stats::qt(1-.05/2, df=length(x)-1)
 
-    if(FC >= 0.98){
+    if(fc >= 0.98){
       # cat("\n-------------------------------------------------------------\n
       #   A população é Infinita.\n")
       n <- ceiling((t^2*stats::var(x))/E^2)
@@ -78,11 +78,11 @@ SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
 
     }else{
       # cat("\n-------------------------------------------------------------\n")
-      # cat("A população é Finita -", "FC =",round(FC,3),"\n")
+      # cat("A população é Finita -", "FC =",round(fc,3),"\n")
       n <- ceiling((N*t^2*stats::var(x))/(N*E^2 + t^2*stats::var(x)))
       #cat("Para atender ao erro estabelecido você deve amostrar", n, "parcelas.\n")
-      VarM <- stats::var(x)/length(x)*FC
-      SdM <- (stats::sd(x)/sqrt(length(x)))*sqrt(FC)
+      VarM <- stats::var(x)/length(x)*fc
+      SdM <- (stats::sd(x)/sqrt(length(x)))*sqrt(fc)
       Ea <- t*SdM
       Er <- (Ea/mean(x, na.rm = TRUE))*100
       ICI <- mean(x, na.rm = TRUE) - Ea
@@ -107,7 +107,7 @@ SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
     }
     #cat("\n-------------------------------------------------------------\n")
 
-    out <- list(Sum, Mean, N, f, E, t, n,
+    out <- list(Sum, Mean, ceiling(N), f, E, t, n,
                 VarM, SdM, Ea, Er, ICI, ICS,
                 TotPop, ICIP, ICSP)
 
@@ -137,7 +137,7 @@ SRS <- function(x, by=NULL, A, a, FP=TRUE, DT=TRUE){
     out <- out %>%
       tibble::rownames_to_column(var = "Parameters") %>%
       dplyr::rename("Estimates" = names(out)) %>%
-      dplyr::mutate_if(is.numeric, scales::comma, accuracy = .01)
+      dplyr::mutate_if(is.numeric, scales::comma, accuracy = .001)
 
     if(DT==TRUE){
       DT::datatable(out,
