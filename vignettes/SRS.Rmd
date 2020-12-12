@@ -17,5 +17,5 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(forester)
 data("pinus")
-SRS(x = pinus$Volume, A = 400000, a = 600, DT=T)
+SRS(x = pinus$Volume, A = 400000, a = 600, FP = F, DT = T)
 ```
