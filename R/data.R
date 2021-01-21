@@ -25,3 +25,18 @@
 #'   ...
 #' }
 "species"
+
+#' Multiple Species
+#'
+#' A dataset containing the volumes for multiple species.
+#'
+#' @format A data frame with 54 rows and 3 variables:
+#' \describe{
+#'   \item{Specie}{Factor. Wood species.}
+#'   \item{Sample}{sample unit, em metros quadrados}
+#'   \item{Volume}{Volume, em metros cúbicos}
+#'
+#'   ...
+#' }
+#' @source Simulated data
+"species2"
