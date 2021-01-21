@@ -1,5 +1,5 @@
 ---
-title: "Simple Random Sampling - SRS"
+title: "Simple Random Sampling"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Simple Random Sampling}
@@ -19,5 +19,5 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(forester)
 data("pinus")
-SRS(x = pinus$Volume, A = 400000, a = 600, FP = F, DT = T)
+SRS(x = pinus$Volume, A = 40, a = 0.06, FP = T, DT = F)
 ```
