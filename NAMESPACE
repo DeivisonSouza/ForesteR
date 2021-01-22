@@ -2,6 +2,5 @@
 
 export("%>%")
 export(SRS)
-export(desc)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
