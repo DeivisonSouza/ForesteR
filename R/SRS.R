@@ -265,7 +265,7 @@ SRS <- function(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...){
     #     ))
     # }, select = manipulateWidget::mwSelect(1:3))
 
-    out %>% DT::datatable(editable = TRUE,
+    result <- out %>% DT::datatable(editable = TRUE,
                                  rownames = F,
                                  extensions=c("Buttons",'ColReorder'),
                                  options = list(
