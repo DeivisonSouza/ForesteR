@@ -237,51 +237,51 @@ SRS <- function(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...){
                                  UCIP = "Upper confidence interval (Population)"))
 
   if(DT == TRUE) {
-    manipulateWidget::manipulateWidget({
-      manipulateWidget::combineWidgets(
-        title = "Simple Random Sampling",
-        ncol = 1, colsize = 1,
-        DT::datatable(out, editable = TRUE,
-                      rownames = F,
-                      extensions=c("Buttons",'ColReorder'),
-                      options = list(
-                        colReorder = TRUE,
-                        pageLength = 20,
-                        dom = 'Bfrtip',
-                        buttons = c('copy', 'excel', 'pdf', I('colvis')),
-                        scroller = TRUE,
-                        searchHighlight = TRUE)
-        ),
-        DT::datatable(descByOut, editable = TRUE,
-                      rownames = F,
-                      extensions=c("Buttons",'ColReorder'),
-                      options = list(
-                        colReorder = TRUE,
-                        pageLength = 20,
-                        dom = 'Bfrtip',
-                        buttons = c('copy', 'excel', 'pdf', I('colvis')),
-                        scroller = TRUE,
-                        searchHighlight = TRUE)
-        ))
-    }, select = manipulateWidget::mwSelect(1:3))
+    # manipulateWidget::manipulateWidget({
+    #   manipulateWidget::combineWidgets(
+    #     title = "Simple Random Sampling",
+    #     ncol = 1, colsize = 1,
+    #     DT::datatable(out, editable = TRUE,
+    #                   rownames = F,
+    #                   extensions=c("Buttons",'ColReorder'),
+    #                   options = list(
+    #                     colReorder = TRUE,
+    #                     pageLength = 20,
+    #                     dom = 'Bfrtip',
+    #                     buttons = c('copy', 'excel', 'pdf', I('colvis')),
+    #                     scroller = TRUE,
+    #                     searchHighlight = TRUE)
+    #     ),
+    #     DT::datatable(descByOut, editable = TRUE,
+    #                   rownames = F,
+    #                   extensions=c("Buttons",'ColReorder'),
+    #                   options = list(
+    #                     colReorder = TRUE,
+    #                     pageLength = 20,
+    #                     dom = 'Bfrtip',
+    #                     buttons = c('copy', 'excel', 'pdf', I('colvis')),
+    #                     scroller = TRUE,
+    #                     searchHighlight = TRUE)
+    #     ))
+    # }, select = manipulateWidget::mwSelect(1:3))
 
-    # result <- out %>% DT::datatable(editable = TRUE,
-    #                              rownames = F,
-    #                              extensions=c("Buttons",'ColReorder'),
-    #                              options = list(
-    #                                colReorder = TRUE,
-    #                                pageLength = 20,
-    #                                dom = 'Bfrtip',
-    #                                buttons = c('copy', 'excel', 'pdf', I('colvis')),
-    #                                scroller = TRUE,
-    #                                searchHighlight = TRUE)
-    # ) %>%
-    #   DT::formatRound(
-    #     -1,
-    #     digits = 2,
-    #     mark = ",",
-    #     dec.mark = getOption("OutDec")
-    #   )
+    out %>% DT::datatable(editable = TRUE,
+                                 rownames = F,
+                                 extensions=c("Buttons",'ColReorder'),
+                                 options = list(
+                                   colReorder = TRUE,
+                                   pageLength = 20,
+                                   dom = 'Bfrtip',
+                                   buttons = c('copy', 'excel', 'pdf', I('colvis')),
+                                   scroller = TRUE,
+                                   searchHighlight = TRUE)
+    ) %>%
+      DT::formatRound(
+        -1,
+        digits = 2,
+        mark = ",",
+        dec.mark = getOption("OutDec")
+      )
   }else{
 
     result <- structure(list(Descriptive = descByOut,
