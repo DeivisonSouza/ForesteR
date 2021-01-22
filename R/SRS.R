@@ -86,7 +86,7 @@ SRS <- function(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...){
                        Q3 = stats::quantile(x, 0.75),
                        IQR = stats::IQR(x),
                        max = max(x),
-                       kurtosi = moments::kurtosis(x),
+                       kurt = moments::kurtosis(x),
                        skew = moments::skewness(x),
                        .groups = 'drop')
 
@@ -109,7 +109,7 @@ SRS <- function(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...){
                                           var/count,
                                           (var/count)*fc)) %>%
       dplyr::mutate(StdM = sqrt(VarM),
-                    ASE = t*StdM,
+                    ASE = t* StdM,
                     RSE = (ASE/mean)*100,
                     LCI = mean - ASE,
                     UCI = mean + ASE) %>%
@@ -174,7 +174,7 @@ SRS <- function(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...){
                        Q3 = stats::quantile(x, 0.75),
                        IQR = stats::IQR(x),
                        max = max(x),
-                       kurtosi = moments::kurtosis(x),
+                       kurt = moments::kurtosis(x),
                        skew = moments::skewness(x),
                        .groups = 'drop')
 
