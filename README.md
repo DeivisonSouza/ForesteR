@@ -36,7 +36,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(forester)
 data("pinus")
-SR(x = pinus$Volume, A = 40, a = 0.06, FP = F, DT = F)
+RS(x = pinus$Volume, A = 40, a = 0.06, FP = F, DT = F)
 #> $Descriptive
 #> # A tibble: 13 x 2
 #>    Parameters Value
@@ -80,14 +80,14 @@ SR(x = pinus$Volume, A = 40, a = 0.06, FP = F, DT = F)
 #> 1  2.38  2.13    40  0.06  667. 0.0240 0.976
 #> 
 #> attr(,"class")
-#> [1] "forester" "SRS"
+#> [1] "forester" "RS"
 ```
 
 An example using factor:
 
 ``` r
 data("species2")
-SR(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06, 0.07, 0.05, 0.08), FP = F, DT = F)
+RS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06, 0.07, 0.05, 0.08), FP = F, DT = F)
 #> $Descriptive
 #> # A tibble: 13 x 5
 #>    Parameters Pinus Eucaliptus  Teca Acacia
@@ -134,5 +134,5 @@ SR(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06,
 #> 4 Acacia      2.41  2.18    70  0.08  875  0.0149  0.985
 #> 
 #> attr(,"class")
-#> [1] "forester" "SRS"
+#> [1] "forester" "RS"
 ```
