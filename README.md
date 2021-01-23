@@ -36,7 +36,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(forester)
 data("pinus")
-SRS(x = pinus$Volume, A = 40, a = 0.06, FP = F, DT = F)
+SR(x = pinus$Volume, A = 40, a = 0.06, FP = F, DT = F)
 #> $Descriptive
 #> # A tibble: 13 x 2
 #>    Parameters Value
@@ -52,7 +52,7 @@ SRS(x = pinus$Volume, A = 40, a = 0.06, FP = F, DT = F)
 #>  9 Q3         24.8 
 #> 10 IQR         2.86
 #> 11 max        36.2 
-#> 12 kurtosi     5.77
+#> 12 kurt        5.77
 #> 13 skew        1.47
 #> 
 #> $Estimated
@@ -87,7 +87,7 @@ An example using factor:
 
 ``` r
 data("species2")
-SRS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06, 0.07, 0.05, 0.08), FP = F, DT = F)
+SR(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06, 0.07, 0.05, 0.08), FP = F, DT = F)
 #> $Descriptive
 #> # A tibble: 13 x 5
 #>    Parameters Pinus Eucaliptus  Teca Acacia
@@ -103,7 +103,7 @@ SRS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06
 #>  9 Q3         24.8       25.0  24.6   24.8 
 #> 10 IQR         2.86       3.75  2.85   2.41
 #> 11 max        36.2       36.2  36.2   36.2 
-#> 12 kurtosi     5.77       5.14  4.33   5.04
+#> 12 kurt        5.77       5.14  4.33   5.04
 #> 13 skew        1.47       1.42  1.23   1.34
 #> 
 #> $Estimated
