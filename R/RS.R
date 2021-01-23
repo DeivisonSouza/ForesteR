@@ -287,7 +287,7 @@ RS <- function(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...){
     result <- structure(list(Descriptive = descByOut,
                              Estimated = out,
                              'Base information' = tbInf),
-                        class = c("forester", "SRS"))
+                        class = c("forester", "RS"))
   }
   return(result)
 }
