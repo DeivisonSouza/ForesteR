@@ -60,5 +60,5 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r ex3}
 data("native")
-SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, FP = F, SA = "PA")
+SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA", FP = FALSE, DT = FALSE, digits = 3)
 ```

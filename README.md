@@ -143,24 +143,24 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 data("native")
-SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, FP = F, SA = "PA")
+SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA", FP = FALSE, DT = FALSE, digits = 3)
 #> $Descriptive
 #> # A tibble: 13 x 3
-#>    Parameters S1           S2          
-#>    <chr>      <chr>        <chr>       
-#>  1 count      "12"         "12"        
-#>  2 Mean       " 89.08333"  "125.41667" 
-#>  3 sd         " 8.458007"  "16.160886" 
-#>  4 var        " 71.53788"  "261.17424" 
-#>  5 cv         " 9.494488"  "12.885756" 
-#>  6 min        "74"         "99"        
-#>  7 Q1         " 82.75"     "116.50"    
-#>  8 median     " 90.5"      "123.5"     
-#>  9 Q3         " 95.25"     "133.25"    
-#> 10 IQR        "12.50"      "16.75"     
-#> 11 max        "101"        "153"       
-#> 12 kurt       "2.017347"   "2.219266"  
-#> 13 skew       "-0.2331520" " 0.2005969"
+#>    Parameters      S1      S2
+#>    <chr>        <dbl>   <dbl>
+#>  1 count       12      12    
+#>  2 Mean        89.1   125.   
+#>  3 sd           8.46   16.2  
+#>  4 var         71.5   261.   
+#>  5 cv           9.49   12.9  
+#>  6 min         74      99    
+#>  7 Q1          82.8   116.   
+#>  8 median      90.5   124.   
+#>  9 Q3          95.2   133.   
+#> 10 IQR         12.5    16.8  
+#> 11 max        101     153    
+#> 12 kurt         2.02    2.22 
+#> 13 skew        -0.233   0.201
 #> 
 #> $Anova
 #>             Df Sum Sq Mean Sq F value   Pr(>F)    
@@ -171,22 +171,22 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, FP = F, SA =
 #> 
 #> $Estimated
 #> # A tibble: 14 x 2
-#>    Parameters                                   Value   
-#>    <chr>                                        <chr>   
-#>  1 Number of potential sample units             1000    
-#>  2 Count                                        24      
-#>  3 Sample sufficiency (Proportional allocation) 5.662564
-#>  4 Stratified sample mean                       101.8   
-#>  5 Stratified sample variance                   137.9106
-#>  6 Variance of the mean stratified              5.046973
-#>  7 Standard error of the mean stratified        2.246547
-#>  8 Absolute sampling error                      4.659164
-#>  9 Relative sampling error                      4.576782
-#> 10 Lower confidence interval for the mean       97.14084
-#> 11 Upper confidence interval for the mean       106.4592
-#> 12 Total population                             101800  
-#> 13 Lower confidence interval for the population 97140.84
-#> 14 Upper confidence interval for the population 106459.2
+#>    Parameters                                       Value
+#>    <chr>                                            <dbl>
+#>  1 Number of potential sample units               1000   
+#>  2 Count                                            24   
+#>  3 Sample sufficiency (Proportional allocation)      5.66
+#>  4 Stratified sample mean                          102.  
+#>  5 Stratified sample variance                      138.  
+#>  6 Variance of the mean stratified                   5.05
+#>  7 Standard error of the mean stratified             2.25
+#>  8 Absolute sampling error                           4.66
+#>  9 Relative sampling error                           4.58
+#> 10 Lower confidence interval for the mean           97.1 
+#> 11 Upper confidence interval for the mean          106.  
+#> 12 Total population                             101800   
+#> 13 Lower confidence interval for the population  97141.  
+#> 14 Upper confidence interval for the population 106459.  
 #> 
 #> $BaseInfo
 #> $BaseInfo$`1`
@@ -197,13 +197,13 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, FP = F, SA =
 #> 
 #> $BaseInfo$`2`
 #> # A tibble: 5 x 2
-#>   Parameters Value   
-#>   <chr>      <chr>   
-#> 1 E          10.18   
-#> 2 t          2.068658
-#> 3 f          0.024   
-#> 4 fc         0.976   
-#> 5 ne         21.99093
+#>   Parameters  Value
+#>   <chr>       <dbl>
+#> 1 E          10.2  
+#> 2 t           2.07 
+#> 3 f           0.024
+#> 4 fc          0.976
+#> 5 ne         22.0  
 #> 
 #> 
 #> attr(,"class")
