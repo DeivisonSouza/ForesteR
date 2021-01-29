@@ -136,3 +136,74 @@ RS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06,
 #> attr(,"class")
 #> [1] "forester" "RS"
 ```
+
+An example using Stratified Random Sampling (SRS):
+
+``` r
+data("native")
+SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, SA = "PA")
+#> $Descriptive
+#> # A tibble: 13 x 3
+#>    Parameters S1           S2          
+#>    <chr>      <chr>        <chr>       
+#>  1 count      "12"         "12"        
+#>  2 Mean       " 89.08333"  "125.41667" 
+#>  3 sd         " 8.458007"  "16.160886" 
+#>  4 var        " 71.53788"  "261.17424" 
+#>  5 cv         " 9.494488"  "12.885756" 
+#>  6 min        "74"         "99"        
+#>  7 Q1         " 82.75"     "116.50"    
+#>  8 median     " 90.5"      "123.5"     
+#>  9 Q3         " 95.25"     "133.25"    
+#> 10 IQR        "12.50"      "16.75"     
+#> 11 max        "101"        "153"       
+#> 12 kurt       "2.017347"   "2.219266"  
+#> 13 skew       "-0.2331520" " 0.2005969"
+#> 
+#> $Anova
+#>             Df Sum Sq Mean Sq F value   Pr(>F)    
+#> strata       1   7921    7921   47.61 6.27e-07 ***
+#> Residuals   22   3660     166                     
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#> 
+#> $Estimated
+#> # A tibble: 14 x 2
+#>    Parameters                                   Value   
+#>    <chr>                                        <chr>   
+#>  1 Number of potential sample units             1000    
+#>  2 Count                                        24      
+#>  3 Sample sufficiency (Proportional allocation) 5.662564
+#>  4 Stratified sample mean                       101.8   
+#>  5 Stratified sample variance                   137.9106
+#>  6 Variance of the mean stratified              5.046973
+#>  7 Standard error of the mean stratified        2.246547
+#>  8 Absolute sampling error                      4.659164
+#>  9 Relative sampling error                      4.576782
+#> 10 Lower confidence interval for the mean       97.14084
+#> 11 Upper confidence interval for the mean       106.4592
+#> 12 Total population                             101800  
+#> 13 Lower confidence interval for the population 97140.84
+#> 14 Upper confidence interval for the population 106459.2
+#> 
+#> $BaseInfo
+#> $BaseInfo$`1`
+#>  strata   Ah   Nh   Wh
+#>      S1  650  650 0.65
+#>      S2  350  350 0.35
+#>   Total 1000 1000 1.00
+#> 
+#> $BaseInfo$`2`
+#> # A tibble: 5 x 2
+#>   Parameters Value   
+#>   <chr>      <chr>   
+#> 1 E          10.18   
+#> 2 t          2.068658
+#> 3 f          0.024   
+#> 4 fc         0.976   
+#> 5 ne         21.99093
+#> 
+#> 
+#> attr(,"class")
+#> [1] "forester" "SRS"
+```

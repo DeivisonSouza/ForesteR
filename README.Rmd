@@ -54,3 +54,9 @@ data("species2")
 RS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06, 0.07, 0.05, 0.08), FP = F, DT = F)
 ```
 
+An example using Stratified Random Sampling (SRS):
+
+```{r ex3}
+data("native")
+SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, SA = "PA")
+```
