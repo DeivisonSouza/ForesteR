@@ -29,7 +29,7 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("DeivisonSouza/forester")
 ```
 
-## Example
+## Simple Random Sampling
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -137,11 +137,13 @@ RS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06,
 #> [1] "forester" "RS"
 ```
 
-An example using Stratified Random Sampling (SRS):
+## Stratified Random Sampling
+
+This is a basic example which shows you how to solve a common problem:
 
 ``` r
 data("native")
-SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, SA = "PA")
+SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, FP = F, SA = "PA")
 #> $Descriptive
 #> # A tibble: 13 x 3
 #>    Parameters S1           S2          
