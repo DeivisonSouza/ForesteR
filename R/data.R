@@ -40,3 +40,19 @@
 #' }
 #' @source Simulated data
 "species2"
+
+#' Native Species
+#'
+#' A dataset containing the volumes para dois estratos de floresta
+#' nativa.
+#'
+#' @format A tibble with 24 rows and 3 variables:
+#' \describe{
+#'   \item{strata}{Factor. Fator de estratificação.}
+#'   \item{Sample}{Indice identificador da unidade amostral.}
+#'   \item{Volume}{Volume, em metros cúbicos}
+#'
+#'   ...
+#' }
+#' @source Sanquetta
+"native"
