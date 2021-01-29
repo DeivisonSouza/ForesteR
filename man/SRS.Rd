@@ -4,24 +4,40 @@
 \alias{SRS}
 \title{Stratified Random Sampling}
 \usage{
-SRS(data = NULL, x, strata, A, a, SA = "PA", FP = FALSE, DT = FALSE, ...)
+SRS(
+  data = NULL,
+  x,
+  strata,
+  A,
+  a,
+  LE = 0.1,
+  SA = "PA",
+  FP = FALSE,
+  DT = FALSE,
+  digits = 3,
+  ...
+)
 }
 \arguments{
-\item{data}{Conjunto de dados que contém as informações de inventário florestal.}
+\item{data}{Conjunto de dados que contém as informações de inventário florestal para diferentes estratos.}
 
 \item{x}{Um vetor numérico com a variável de interesse.}
 
-\item{strata}{Fator de estratificação da característica de interesse.}
+\item{strata}{Fator. Usado para estratificação da variável de interesse.}
 
-\item{A}{Área total da população, em hectare.}
+\item{A}{Numérico. Um vetor númerico com a área total de cada estrato, em hectare.}
 
-\item{a}{Área da unidade de amostra, em hectare.}
+\item{a}{Numérico. Área da unidade de amostra, em hectare.}
 
-\item{SA}{Método de alocação das unidades de amostras nos estratos.}
+\item{LE}{Numérico. Limite de erro admissível. O padrão é 0.1, isto é, 10\% da média amostral estimada.}
 
-\item{FP}{Lógico. Fator de proporcionalidade para transformar para hectare. (default = FALSE)}
+\item{SA}{Método de alocação das unidades de amostras nos estratos. Estão disponíveis os método "PA" (Proportional allocation) e "Neyman".}
 
-\item{DT}{Lógico. Imprime a saída no painel de visualização. (default = FALSE)}
+\item{FP}{Lógico. Fator de proporcionalidade para transformar os valores da variável de interesse para hectare. (default = FALSE)}
+
+\item{DT}{Lógico. Imprime as estimativas dos parâmetros no painel de visualização. (default = FALSE)}
+
+\item{digits}{Inteiro. Número de casas decimais para imprimir os resultados. (default = 3)}
 
 \item{...}{Parâmetros adicionais}
 }
@@ -34,7 +50,7 @@ Stratified Random Sampling
 \examples{
 \dontrun{
 data(native)
-SRS(x=native$Volume, strata=native$Strata, A = c(650, 350), a = 1, SA = "PA")
+SRS(x=native$Volume, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA")
 }
 
 }
