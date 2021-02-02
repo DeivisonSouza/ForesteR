@@ -50,7 +50,7 @@ Stratified Random Sampling
 \examples{
 \dontrun{
 data(native)
-SRS(x=native$Volume, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA")
+SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA")
 }
 
 }
