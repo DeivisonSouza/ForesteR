@@ -12,7 +12,7 @@
 #' @param digits Inteiro. Número de casas decimais para imprimir os resultados. (default = 3)
 #' @param ... Parâmetros adicionais
 #'
-#' @return Uma lista com estatística descritiva, anova, estimativas de amostragem aleatória estratificada e informações de base para cálculo das estimativas.
+#' @return Uma lista com estatística descritiva, anova, informações de base para cálculos e estimativas de amostragem aleatória estratificada.
 #' @export
 #'
 #' @examples
