@@ -42,7 +42,7 @@ SRS(
 \item{...}{Parâmetros adicionais}
 }
 \value{
-Uma lista com estatística descritiva, anova, estimativas de amostragem aleatória estratificada e informações de base para cálculo das estimativas.
+Uma lista com estatística descritiva, anova, informações de base para cálculos e estimativas de amostragem aleatória estratificada.
 }
 \description{
 Stratified Random Sampling
