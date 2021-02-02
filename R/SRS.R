@@ -18,7 +18,7 @@
 #' @examples
 #' \dontrun{
 #' data(native)
-#' SRS(x=native$Volume, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA")
+#' SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA = "PA")
 #'}
 #'
 #' @importFrom rlang .data
@@ -34,21 +34,25 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
   if(!(SA %in% c("PA", "Neyman"))) stop("`SA` should be either 'PA' or 'Neyman'")
 
   # Summary table per sample unit ===========================================
+  if (!is.null(data)) {
+    tb <- tibble::tibble(
+      strata = factor(strata, levels = unique(strata)),
+      x = dplyr::case_when((FP == TRUE ) ~ x*(1/a),
+                           (FP == FALSE) ~ x))
+  }else{
+    tb <- tibble::tibble(
+      strata = factor(strata, levels = unique(strata)),
+      x = dplyr::case_when((FP == TRUE ) ~ x*(1/a),
+                           (FP == FALSE) ~ x))
+  }
 
-  tb <- tibble::tibble(
-    strata = factor(strata, levels = unique(strata)),
-    x = dplyr::case_when((FP == TRUE ) ~ x*(1/a),
-                         (FP == FALSE) ~ x))
-
-  # Table with basic information for calculating estimates ==================
+  # Basic information for calculating estimates ============================
   tbInf <- tb %>%
     dplyr::group_by(strata) %>%
     dplyr::summarise(.groups = 'drop') %>%
     dplyr::mutate(Ah = A,
                   Nh = Ah/a,
-                  Wh = Ah/sum(Ah),
-                  #f = count/N,
-                  #fc = 1-f
+                  Wh = Ah/sum(Ah)
     ) %>%
     janitor::adorn_totals("row")
     #dplyr::rowwise(strata) %>%
@@ -71,10 +75,9 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
                      kurt = moments::kurtosis(x),
                      skew = moments::skewness(x),
                      .groups = 'drop') #%>%
-    # dplyr::mutate_at(dplyr::vars(c(count,)), ceiling)
+    # dplyr::mutate_at(dplyr::vars(c(count)), ceiling)
 
   tbDescBy <- descBy %>%
-    #dplyr::mutate_if(is.numeric, format, scientific=FALSE) %>%
     dplyr::mutate(dplyr::across(where(is.numeric), round, digits)) %>%
     tidyr::pivot_longer(!strata,
                         names_to = "Parameters",
@@ -94,11 +97,7 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
   tbPar <- tbInf2 %>%
     dplyr::summarise(E = LE*sum(Wh*Mean),
                      t = stats::qt(1-.05/2, length(x)-1),
-                     #f = length(x)*a/sum(A),
                      f = length(x)/sum(Nh),
-                     #f = (length(x)*(a*(1/a)))/sum(A),
-                     # f = dplyr::case_when((FP == TRUE ) ~ (length(x)*(a*(1/a)))/sum(Ah),
-                     #                      (FP == FALSE) ~ length(x)/sum(Nh)),
                      fc = 1-f,
                      # ne = dplyr::case_when((FP == TRUE ) ~ (sum(((Ah*(Ah-count))/count)*var)^2)/sum((((Ah*(Ah-count))/count)^2)*(var^2)/(count-1)),
                      #                      (FP == FALSE) ~ (sum(((Nh*(Nh-count))/count)*var)^2)/sum((((Nh*(Nh-count))/count)^2)*(var^2)/(count-1))),
@@ -110,6 +109,11 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
                                            (fc >= 0.98 & SA == "Neyman") ~ (t^2*(sum(Wh*sqrt(var))^2))/ E^2, # infinite
                                            (fc < 0.98 & SA == "Neyman") ~ (t^2*(sum(Wh*sqrt(var))^2))/ ((E^2)+((t^2)*(sum(Wh*var/sum(Nh))))) # finite
                                           ),
+                     nrec = dplyr::case_when((fc >= 0.98 & SA == "PA") ~ ((stats::qt(1-.05/2, round(n)-1))^2*sum(Wh*var))/ E^2, # infinite
+                                          (fc < 0.98 & SA == "PA") ~ ((stats::qt(1-.05/2, round(n)-1))^2*sum(Wh*var))/ ((E^2)+(((stats::qt(1-.05/2, round(n)-1))^2)*(sum(Wh*var/sum(Nh))))), # finite
+                                          (fc >= 0.98 & SA == "Neyman") ~ ((stats::qt(1-.05/2, round(n)-1))^2*(sum(Wh*sqrt(var))^2))/ E^2, # infinite
+                                          (fc < 0.98 & SA == "Neyman") ~ ((stats::qt(1-.05/2, round(n)-1))^2*(sum(Wh*sqrt(var))^2))/ ((E^2)+(((stats::qt(1-.05/2, round(n)-1))^2)*(sum(Wh*var/sum(Nh))))) # finite
+                     ),
                      mean.st = sum(Wh*Mean),
                      var.st = sum(Wh*var),
                      var.mean.st = sum(Wh^2*(var/count)) - sum((Wh*var)/sum(Nh)),
@@ -131,12 +135,30 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
                         names_to = 'Parameters',
                         values_to = 'Value')
 
-  tbPar <- tbPar %>%
+    # Sample sufficiency per strata ============================================
+    tbSA <- tbInf %>%
+      dplyr::select(dplyr::contains(c("s", "W"))) %>%
+      dplyr::slice(-dplyr::n()) %>%
+      dplyr::group_by(strata) %>%
+      dplyr::summarise(nh  = Wh*(tbPar %>%
+                                  dplyr::filter(Parameters == 'nrec') %>%
+                                  .[[2]] %>%
+                                  round())) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), round)) %>%
+      dplyr::rename_with(function(x) paste0("nh", " ", "(", ifelse(SA == "PA", "Proportional allocation", "Neyman"), ")"), where(is.numeric)) %>%
+      janitor::adorn_totals("row")
+
+    # Rename parameters =======================================================
+    tbPar <- tbPar %>%
     dplyr::mutate(
       Parameters = dplyr::recode(Parameters,
                                  N = "Number of potential sample units",
                                  count = "Count",
-                                 n = paste0("Sample sufficiency", " ", "(", ifelse(SA == "PA", "Proportional allocation", "Neyman"), ")"),
+                                 n = paste0("Sample sufficiency", " ", '(df =',length(x)-1,')', " ","(", ifelse(SA == "PA", "Proportional allocation", "Neyman"), ")"),
+                                 nrec = paste0("Sample sufficiency recalculation", " ", '(df =',tbPar %>%
+                                                 dplyr::filter(Parameters == 'n') %>%
+                                                 .[[2]] %>%
+                                                 round()-1,')', " ","(", ifelse(SA == "PA", "Proportional allocation", "Neyman"), ")"),
                                  mean.st = "Stratified sample mean",
                                  var.st = "Stratified sample variance",
                                  var.mean.st = "Variance of the mean stratified",
@@ -152,19 +174,39 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
   tbParOut <- tbPar %>%
     dplyr::filter(!Parameters %in% c("E", "t", "f", "fc", "ne"))
 
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # DataTable in Viewer =====================================================
+  if(DT == TRUE) {
+    tbParOut %>% DT::datatable(editable = TRUE,
+                                    rownames = F,
+                                    extensions=c("Buttons",'ColReorder'),
+                                    options = list(
+                                      colReorder = TRUE,
+                                      pageLength = 20,
+                                      dom = 'Bfrtip',
+                                      buttons = c('copy', 'excel', 'pdf', I('colvis')),
+                                      scroller = TRUE,
+                                      searchHighlight = TRUE)
+    ) %>%
+      DT::formatRound(
+        -1,
+        digits = 2,
+        mark = ",",
+        dec.mark = getOption("OutDec")
+      ) %>% print()
+  }
+
+  # Output ==================================================================
   result <- structure(list(Descriptive = tbDescBy,
                            Anova = AOV,
-                           Estimated = tbParOut,
+                           Estimated = list(parameters = tbParOut,
+                                            nst = tbSA),
                            BaseInfo = list(`1` = tbInf,
                                            `2` = tbPar %>%
                                              dplyr::filter(Parameters %in% c("E", "t", "f", "fc", "ne")))),
                       class = c("forester", "SRS"))
   return(result)
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
 
 # Teste FP (dados: http://www.mensuracaoflorestal.com.br/capitulo-5-amostragem-casual-estratificada)
 # r <- SRS(x=test$Volume, strata=test$Strata, A = c(14.4, 16.4, 14.2), a = 0.1, LE = 0.05, SA = "PA", FP = TRUE)
 # z <- SRS(x=test$Volume, strata=test$Strata, A = c(14.4, 16.4, 14.2), a = 0.1, LE = 0.05, SA = "PA", FP = FALSE)
-
