@@ -3,4 +3,4 @@ utils::globalVariables(c("count", "N", "f", "E", "fp", "sd",
                          "ASE", "TotPop", "Parameters", ".",
                          "Ah", "Wh", "Mean", "Nh", "var.mean.st",
                          "ne", "std.mean.st", "ase", "mean.st",
-                         "totPop", "var.mean.st"))
+                         "totPop", "var.mean.st", "where"))
