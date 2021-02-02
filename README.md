@@ -31,7 +31,8 @@ devtools::install_github("DeivisonSouza/forester")
 
 ## Simple Random Sampling
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a common problem
+(Sanquetta et al., 2014, page: 110-113):
 
 ``` r
 library(forester)
@@ -139,7 +140,8 @@ RS(x = species2$Volume, by = species2$Specie, A = c(40, 50, 60, 70), a = c(0.06,
 
 ## Stratified Random Sampling
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a common problem
+(Sanquetta et al., 2014, page: 122-129):
 
 ``` r
 data("native")
@@ -170,23 +172,32 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> 
 #> $Estimated
-#> # A tibble: 14 x 2
-#>    Parameters                                       Value
-#>    <chr>                                            <dbl>
-#>  1 Number of potential sample units               1000   
-#>  2 Count                                            24   
-#>  3 Sample sufficiency (Proportional allocation)      5.66
-#>  4 Stratified sample mean                          102.  
-#>  5 Stratified sample variance                      138.  
-#>  6 Variance of the mean stratified                   5.05
-#>  7 Standard error of the mean stratified             2.25
-#>  8 Absolute sampling error                           4.66
-#>  9 Relative sampling error                           4.58
-#> 10 Lower confidence interval for the mean           97.1 
-#> 11 Upper confidence interval for the mean          106.  
-#> 12 Total population                             101800   
-#> 13 Lower confidence interval for the population  97141.  
-#> 14 Upper confidence interval for the population 106459.  
+#> $Estimated$parameters
+#> # A tibble: 15 x 2
+#>    Parameters                                                             Value
+#>    <chr>                                                                  <dbl>
+#>  1 Number of potential sample units                                     1000   
+#>  2 Count                                                                  24   
+#>  3 Sample sufficiency (df =23) (Proportional allocation)                   5.66
+#>  4 Sample sufficiency recalculation (df =5) (Proportional allocation)      8.72
+#>  5 Stratified sample mean                                                102.  
+#>  6 Stratified sample variance                                            138.  
+#>  7 Variance of the mean stratified                                         5.05
+#>  8 Standard error of the mean stratified                                   2.25
+#>  9 Absolute sampling error                                                 4.66
+#> 10 Relative sampling error                                                 4.58
+#> 11 Lower confidence interval for the mean                                 97.1 
+#> 12 Upper confidence interval for the mean                                106.  
+#> 13 Total population                                                   101800   
+#> 14 Lower confidence interval for the population                        97141.  
+#> 15 Upper confidence interval for the population                       106459.  
+#> 
+#> $Estimated$nst
+#>  strata nh (Proportional allocation)
+#>      S1                            6
+#>      S2                            3
+#>   Total                            9
+#> 
 #> 
 #> $BaseInfo
 #> $BaseInfo$`1`
@@ -209,3 +220,9 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA
 #> attr(,"class")
 #> [1] "forester" "SRS"
 ```
+
+## Reference
+
+SANQUETTA, C. R.; CORTE, A. P. D.; RODRIGUES, A. L.; WATZLAWICK, L. F.
+Inventário Florestal: Planejamento e execução. 3. ed. Curitiba:
+Multi-Graphic Gráfica e Editora., 2014. 406p.
