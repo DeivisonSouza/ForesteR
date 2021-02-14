@@ -4,7 +4,18 @@
 \alias{RS}
 \title{Simple Random Sampling}
 \usage{
-RS(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...)
+RS(
+  data = NULL,
+  x,
+  by = NULL,
+  A,
+  a,
+  LE = 0.1,
+  FP = FALSE,
+  DT = FALSE,
+  digits = 3,
+  ...
+)
 }
 \arguments{
 \item{data}{Conjunto de dados que contém as informações de inventário florestal.}
@@ -17,14 +28,18 @@ RS(data = NULL, x, by = NULL, A, a, FP = FALSE, DT = FALSE, ...)
 
 \item{a}{Área da unidade de amostra, em hectare.}
 
+\item{LE}{Numérico. Limite de erro admissível. O padrão é 0.1, isto é, 10\% da média amostral estimada.}
+
 \item{FP}{Lógico. Fator de proporcionalidade para transformar para hectare. (default = FALSE)}
 
 \item{DT}{Lógico. Imprime a saída no painel de visualização. (default = FALSE)}
 
+\item{digits}{Inteiro. Número de casas decimais para imprimir os resultados. (default = 3)}
+
 \item{...}{Parâmetros adicionais}
 }
 \value{
-Uma lista com estatística descritiva, estimativas de amostragem aleatória simples e informações de base para cálculo das estimativas.
+Uma lista com estatística descritiva, estimativas de amostragem aleatória simples e informações de base usadas pelos estimadores.
 }
 \description{
 Calcula as estimativas de amostragem aleatória simples para dados de inventário florestal.
@@ -35,7 +50,7 @@ Um detalhe importante.
 \examples{
 \dontrun{
 data(pinus)
-SRS(x = pinus$Volume, A = 40, a = 0.06, FP = T, DT = F)
+RS(x = pinus$Volume, A = 40, a = 0.06, LE = 0.1, FP = F)
 }
 
 }
