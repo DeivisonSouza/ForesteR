@@ -160,7 +160,7 @@ RS <- function(data = NULL, x, by = NULL, A, a, LE = 0.1, FP = FALSE, DT = FALSE
                                  count = "Count",
                                  n = "Sample sufficiency",
                                  nrec = paste0(ifelse(is.null(by) == TRUE,
-                                                      paste0("Sample sufficiency recalculation", " ", '(df =',tbPar %>%
+                                                      paste0("Sample sufficiency recalculation", " ", '(df = ',tbPar %>%
                                                                dplyr::filter(Parameters == 'n') %>%
                                                                .[[2]] %>%
                                                                round()-1,')'),
