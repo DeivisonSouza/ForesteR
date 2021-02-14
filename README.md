@@ -31,8 +31,8 @@ devtools::install_github("DeivisonSouza/forester")
 
 ## Simple Random Sampling
 
-This is a basic example which shows you how to solve a common problem
-(Sanquetta et al., 2014, page: 110-113):
+A basic example of applying the RS function to obtain simple random
+sampling estimates (Sanquetta et al., 2014, page: 110-113):
 
 ``` r
 library(forester)
@@ -64,7 +64,7 @@ RS(x = pinus$Volume, A = 40, a = 0.06, LE = 0.1, FP = F)
 #>  2 Number of potential sample units               667.  
 #>  3 Sample mean                                     23.8 
 #>  4 Sample sufficiency                              14   
-#>  5 Sample sufficiency recalculation (df =13)       15   
+#>  5 Sample sufficiency recalculation (df = 13)      15   
 #>  6 Variance of the mean                             1.09
 #>  7 Standard error of the mean                       1.04
 #>  8 Absolute sampling error                          2.22

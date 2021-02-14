@@ -39,7 +39,7 @@ devtools::install_github("DeivisonSouza/forester")
 ```
 ## Simple Random Sampling
 
-This is a basic example which shows you how to solve a common problem (Sanquetta et al., 2014, page: 110-113):
+A basic example of applying the RS function to obtain simple random sampling estimates (Sanquetta et al., 2014, page: 110-113):
 
 ```{r ex1}
 library(forester)
