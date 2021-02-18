@@ -3,7 +3,9 @@
 
 # Hello, welcome\! :smiley: :grin:
 
-# forester package (under development)
+# forester (under development)
+
+<a href='https://tidyverse.tidyverse.org'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 <!-- badges: start -->
 
