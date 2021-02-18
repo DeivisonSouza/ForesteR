@@ -155,7 +155,7 @@ SRS <- function(data = NULL, x, strata, A, a, LE = 0.1, SA = "PA", FP = FALSE, D
                                  N = "Number of potential sample units",
                                  count = "Count",
                                  n = paste0("Sample sufficiency", " ", '(df =',length(x)-1,')', " ","(", ifelse(SA == "PA", "Proportional allocation", "Neyman"), ")"),
-                                 nrec = paste0("Sample sufficiency recalculation", " ", '(df =',tbPar %>%
+                                 nrec = paste0("Sample sufficiency recalculation", " ", '(df = ',tbPar %>%
                                                  dplyr::filter(Parameters == 'n') %>%
                                                  .[[2]] %>%
                                                  round()-1,')', " ","(", ifelse(SA == "PA", "Proportional allocation", "Neyman"), ")"),
