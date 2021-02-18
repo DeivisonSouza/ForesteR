@@ -3,9 +3,7 @@
 
 # Hello, welcome\! :smiley: :grin:
 
-# forester (under development)
-
-<a href='https://tidyverse.tidyverse.org'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
+# forester (under development) <a href='https://github.com/DeivisonSouza/forester'><img src='man/figures/logo.png' align="right" height="135.8" width = "135"/></a>
 
 <!-- badges: start -->
 
