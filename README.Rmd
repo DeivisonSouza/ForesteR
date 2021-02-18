@@ -65,4 +65,4 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA
 
 ## Reference
 
-SANQUETTA, C. R.; CORTE, A. P. D.; RODRIGUES, A. L.; WATZLAWICK, L. F. Inventário Florestal: Planejamento e execução. 3. ed. Curitiba: Multi-Graphic Gráfica e Editora., 2014. 406p.
+SANQUETTA, C. R.; CORTE, A. P. D.; RODRIGUES, A. L.; WATZLAWICK, L. F. Inventário Florestal: Planejamento e execução. 3. ed. Curitiba: Multi-Graphic Gráfica e Editora, 2014. 406p.

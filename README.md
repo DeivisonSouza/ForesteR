@@ -176,23 +176,23 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA
 #> $Estimated
 #> $Estimated$parameters
 #> # A tibble: 15 x 2
-#>    Parameters                                                             Value
-#>    <chr>                                                                  <dbl>
-#>  1 Number of potential sample units                                     1000   
-#>  2 Count                                                                  24   
-#>  3 Sample sufficiency (df =23) (Proportional allocation)                   5.66
-#>  4 Sample sufficiency recalculation (df =5) (Proportional allocation)      8.72
-#>  5 Stratified sample mean                                                102.  
-#>  6 Stratified sample variance                                            138.  
-#>  7 Variance of the mean stratified                                         5.05
-#>  8 Standard error of the mean stratified                                   2.25
-#>  9 Absolute sampling error                                                 4.66
-#> 10 Relative sampling error                                                 4.58
-#> 11 Lower confidence interval for the mean                                 97.1 
-#> 12 Upper confidence interval for the mean                                106.  
-#> 13 Total population                                                   101800   
-#> 14 Lower confidence interval for the population                        97141.  
-#> 15 Upper confidence interval for the population                       106459.  
+#>    Parameters                                                              Value
+#>    <chr>                                                                   <dbl>
+#>  1 Number of potential sample units                                      1000   
+#>  2 Count                                                                   24   
+#>  3 Sample sufficiency (df = 23) (Proportional allocation)                   5.66
+#>  4 Sample sufficiency recalculation (df = 5) (Proportional allocation)      8.72
+#>  5 Stratified sample mean                                                 102.  
+#>  6 Stratified sample variance                                             138.  
+#>  7 Variance of the mean stratified                                          5.05
+#>  8 Standard error of the mean stratified                                    2.25
+#>  9 Absolute sampling error                                                  4.66
+#> 10 Relative sampling error                                                  4.58
+#> 11 Lower confidence interval for the mean                                  97.1 
+#> 12 Upper confidence interval for the mean                                 106.  
+#> 13 Total population                                                    101800   
+#> 14 Lower confidence interval for the population                         97141.  
+#> 15 Upper confidence interval for the population                        106459.  
 #> 
 #> $Estimated$nst
 #>  strata nh (Proportional allocation)
@@ -227,4 +227,4 @@ SRS(x=native$Volume1, strata=native$Strata, A = c(650, 350), a = 1, LE = 0.1, SA
 
 SANQUETTA, C. R.; CORTE, A. P. D.; RODRIGUES, A. L.; WATZLAWICK, L. F.
 Inventário Florestal: Planejamento e execução. 3. ed. Curitiba:
-Multi-Graphic Gráfica e Editora., 2014. 406p.
+Multi-Graphic Gráfica e Editora, 2014. 406p.
