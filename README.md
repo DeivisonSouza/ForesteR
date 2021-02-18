@@ -3,7 +3,7 @@
 
 # Hello, welcome\! :smiley: :grin:
 
-# forester package
+# forester package (under development)
 
 <!-- badges: start -->
 
